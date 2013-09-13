@@ -7,14 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29006142-d840-4e54-8bfb-8b3d1e32160c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/gui/Main.form" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/gui/Main.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/gui/Main.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/gui/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsonDemo.txt" afterPath="$PROJECT_DIR$/jsonDemo.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RPITransport.iws" />
@@ -36,7 +29,7 @@
     <file path="/StationboardDTO.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379024894843" ignored="false" />
     <file path="/RestTOD.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379090105939" ignored="false" />
     <file path="/Transportations.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379034937038" ignored="false" />
-    <file path="/Dummy.txt" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379081659308" ignored="false" />
+    <file path="/Dummy.txt" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379091175273" ignored="false" />
     <file path="/Stop.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379031178144" ignored="false" />
     <file path="/StationboardEntry.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379031634202" ignored="false" />
     <file path="/Station.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379031571778" ignored="false" />
@@ -123,10 +116,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListItem.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ListItem.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="80" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.38961038">
+            <state line="59" column="80" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -175,10 +168,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Settings.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Settings.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="26" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0">
+            <state line="10" column="60" selection-start="292" selection-end="292" vertical-scroll-proportion="0.22727273">
               <folding />
             </state>
           </provider>
@@ -222,13 +215,13 @@
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/model/Transportations.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/model/Stop.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/gui/Main.java" />
-        <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" />
         <option value="$PROJECT_DIR$/rpitransport.properties" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/gui/Main.form" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java" />
+        <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java" />
       </list>
     </option>
   </component>
@@ -630,12 +623,16 @@
       <created>1379081441257</created>
       <updated>1379081441257</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added config file support, tweaked color">
+      <created>1379091182690</created>
+      <updated>1379091182690</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975152" sideWeight="0.672391" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.49966422" order="7" side_tool="false" content_ui="tabs" />
@@ -653,7 +650,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.672391" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.672391" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32760897" sideWeight="0.49966422" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -703,7 +700,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added artifact config" />
+    <option name="LAST_COMMIT_MESSAGE" value="added config file support, tweaked color" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -720,6 +717,7 @@
     <MESSAGE value="First commit, API binding added, GUI partially working" />
     <MESSAGE value="fullscreen working" />
     <MESSAGE value="added artifact config" />
+    <MESSAGE value="added config file support, tweaked color" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -801,13 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="67" column="35" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.0">
@@ -838,7 +829,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="80" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.38961038">
+        <state line="59" column="80" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="60" selection-start="292" selection-end="292" vertical-scroll-proportion="0.22727273">
           <folding />
         </state>
       </provider>

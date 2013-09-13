@@ -8,7 +8,7 @@ package ch.k42.rpi.transport.minions;
 public class Settings {
 
     public static final String default_location= "Sihlquai";
-    public static final Integer default_offsetInMinutes = 3*60;
+    public static final Integer default_offsetInMinutes = 3;
     public static final Integer default_nuberOfEntries= 8;
     public static final String default_urlAPI= "http://transport.opendata.ch/v1/stationboard";
     public static final Integer default_updateIntervallInSeconds = 20;
