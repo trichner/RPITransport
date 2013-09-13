@@ -12,14 +12,14 @@ import java.awt.*;
  * Time: 4:32 PM
  * To change this template use File | Settings | File Templates.
  */
-public class JPanelRenderer extends JPanel implements ListCellRenderer<JPanel> {
+public class JPanelRenderer extends JPanel implements ListCellRenderer<ListItem> {
 
     public JPanelRenderer() {
         //setOpaque(true);
     }
 
     @Override
-    public Component getListCellRendererComponent(JList jList, JPanel item, int index, boolean b, boolean b2) {
-        return item;  //To change body of implemented methods use File | Settings | File Templates.
+    public Component getListCellRendererComponent(JList jList, ListItem item, int index, boolean b, boolean b2) {
+        return item.getJPanel();  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

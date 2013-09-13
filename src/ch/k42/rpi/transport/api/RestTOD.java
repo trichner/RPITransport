@@ -1,6 +1,6 @@
 package ch.k42.rpi.transport.api;
 
-import ch.k42.rpi.transport.api.model.StationboardDTO;
+import ch.k42.rpi.transport.api.model.Stationboard;
 import ch.k42.rpi.transport.api.model.Transportations;
 import com.google.gson.Gson;
 
@@ -23,8 +23,9 @@ public class RestTOD {
 
     public static final String STATION_SIHLQUAI_HB = "008591368";
     public static final String STATION_MUSEUM_GESTALTUNG = "008591282";
+    public static final int CATEGORY_CODE_TRAM = 9;
 
-    public static StationboardDTO getStationboard(String id,int limit,Transportations type) throws Exception {
+    public static Stationboard getStationboard(String id,int limit,Transportations type) throws Exception {
         // Build arguments
         String[] params = {"limit","id","transportations[]"};
         String[] args = new String[3];
@@ -35,9 +36,12 @@ public class RestTOD {
         // Do request
         String http = httpGET(REST_TRANSPORT_STATIONBOARD_URL, params, args);
 
+        // Debug
+        System.out.println(http);
+
         // parse JSON
         Gson gson = new Gson();
-        StationboardDTO stationboard = gson.fromJson(http,StationboardDTO.class);
+        Stationboard stationboard = gson.fromJson(http,Stationboard.class);
 
         return stationboard;
     }

@@ -7,11 +7,11 @@ package ch.k42.rpi.transport.api.model;
  * Time: 11:56 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CoordinatesDTO {
+public class Coordinates {
     private String type;
     private double x;
     private double y;
 
-    public CoordinatesDTO() {
+    public Coordinates() {
     }
 }

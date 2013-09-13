@@ -1,5 +1,7 @@
 package ch.k42.rpi.transport.api;
 
+import ch.k42.rpi.transport.api.model.LineNumber;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
@@ -11,13 +13,13 @@ import java.util.Date;
  * Time: 3:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ListItem {
+public class ListItem implements Comparable<ListItem> {
 
-    private static final int WIDTH_STATION = 300;
-    private static final int WIDTH_DESTINATION = 300;
+    private static final int WIDTH_STATION = 600;
+    private static final int WIDTH_DESTINATION = 600;
     private static final int WIDTH_DEPARTSIN = 60;
     private static final int WIDTH_LINENO = 150;
-    private static final int HEIGHT = 50;
+    private static final int HEIGHT = 100;
 
     private Date departure;
     private String station;
@@ -30,7 +32,7 @@ public class ListItem {
     private JLabel lblDestination;
     private JLabel lblDepartsIn;
 
-    public ListItem(Date departure, String station, String destination, LineNumber number) {
+    public ListItem(Date departure, String station, String destination, LineNumber number){
         this.departure = departure;
         this.station = station;
         this.destination = destination;
@@ -70,7 +72,7 @@ public class ListItem {
         lblLineNo.setHorizontalAlignment(JLabel.LEFT);
         lblLineNo.setFont(new Font("Andale Mono", Font.BOLD, 28));
         lblLineNo.setText(number.name());
-        lblLineNo.setPreferredSize(new Dimension(WIDTH_LINENO,HEIGHT));
+        lblLineNo.setPreferredSize(new Dimension(WIDTH_LINENO, HEIGHT));
     }
 
     private void setupLblStation(){
@@ -78,7 +80,7 @@ public class ListItem {
         lblStation.setHorizontalAlignment(JLabel.LEFT);
         lblStation.setFont(new Font("Verdana", Font.BOLD, 28));
         lblStation.setText(station);
-        lblStation.setPreferredSize(new Dimension(WIDTH_STATION,HEIGHT));
+        lblStation.setPreferredSize(new Dimension(WIDTH_STATION, HEIGHT));
     }
 
     private void setupLblDestination(){
@@ -95,7 +97,7 @@ public class ListItem {
         lblDepartsIn.setHorizontalAlignment(JLabel.RIGHT);
         lblDepartsIn.setFont(new Font("Verdana", Font.BOLD, 28));
         lblDepartsIn.setText(String.format("%2d'",countdownInMinutes()));
-        lblDepartsIn.setPreferredSize(new Dimension(WIDTH_DEPARTSIN,HEIGHT));
+        lblDepartsIn.setPreferredSize(new Dimension(WIDTH_DEPARTSIN, HEIGHT));
     }
 
     /**
@@ -118,4 +120,8 @@ public class ListItem {
         return (int) (((double)(departure.getTime()-System.currentTimeMillis()))/(1000.0*60.0));
     }
 
+    @Override
+    public int compareTo(ListItem listItem) {
+        return departure.compareTo(listItem.departure);  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

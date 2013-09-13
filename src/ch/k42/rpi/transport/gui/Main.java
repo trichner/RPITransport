@@ -1,10 +1,14 @@
 package ch.k42.rpi.transport.gui;
 
-import ch.k42.rpi.transport.api.LineNumber;
+import ch.k42.rpi.transport.api.model.LineNumber;
 import ch.k42.rpi.transport.api.ListItem;
+import ch.k42.rpi.transport.api.TimetableUpdater;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Date;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,62 +18,108 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Main {
+
+    private static final int MAX_LIST_SIZE=8;
+
     private JPanel mainPanel;
     private JList listPanels;
     private JLabel lblStatus;
-    private DefaultListModel<JPanel> listModel;
+    private JFrame mainFrame;
+    private DefaultListModel<ListItem> listModel;
+    private ScheduledThreadPoolExecutor executor;
 
-    private static Main _instance = null;
+
+
+
 
     public static void main(String[] args) {
         Main main = new Main();
         main.initialize();
-        _instance = main;
     }
 
-    public static void updateStatus(final String status){
-        if(_instance==null) return; // no GUI running, nothing to do
-
+    public void updateStatus(final String status){
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                _instance.lblStatus.setText(status);
+                lblStatus.setText(status);
             }
         });
     }
 
     private void initialize(){
+        System.out.println("Initializing...");
         initializeUI();
+        System.out.println("UI online.");
         initializeAPI();
+        System.out.println("API online.");
+        System.out.println("All systems nominal.");
+
     }
 
 
     private void initializeUI(){
-        JFrame frame = new JFrame("Main");
-        frame.setContentPane(mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        mainFrame = new JFrame("Main");
+        mainFrame.setContentPane(mainPanel);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
+
+        if(mainFrame.getGraphicsConfiguration().getDevice().isFullScreenSupported()){ // fullscreen? (I have no idea how this works...)
+            // go fullscreeeen!
+            Window w = SwingUtilities.windowForComponent(mainPanel);
+            if (w instanceof JFrame) {
+                JFrame frame = (JFrame) w;
+                frame.dispose();
+                frame.setUndecorated(true);
+                frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(w);
+                frame.setContentPane(mainPanel);
+                frame.revalidate();
+                frame.repaint();
+                frame.setVisible(true);
+            }
+        }
     }
 
     private void initializeAPI() {
+        // we should be able to go in peace
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            @Override
+            public void run()
+            {
+                shutdownAPI();
+            }
+        });
+
+        // fire up everything
+        executor = new ScheduledThreadPoolExecutor(1);
+        executor.scheduleAtFixedRate(new TimetableUpdater(this,3*1000*60,MAX_LIST_SIZE),2,20, TimeUnit.SECONDS); // 3min offset
+    }
+
+    private void shutdownAPI() {
+        System.out.println("Shutting down safely.");
+        executor.shutdownNow();
     }
 
 
     private void createUIComponents() {
-        listModel = new DefaultListModel<JPanel>();
+        listModel = new DefaultListModel<ListItem>();
         addDummyItems();
         listPanels = new JList(listModel);
         listPanels.setAlignmentY(JList.CENTER_ALIGNMENT);
         listPanels.setCellRenderer(new JPanelRenderer());
     }
 
+    public DefaultListModel<ListItem> getListModel() {
+        return listModel;
+    }
+
     private void addDummyItems(){
         ListItem item1 = new ListItem(new Date(System.currentTimeMillis()+100000),"Sihlquai","Altstetten", LineNumber.TRAM_1);
         ListItem item2 = new ListItem(new Date(System.currentTimeMillis()+200000),"Sihlquai","Triemli", LineNumber.TRAM_2);
         ListItem item3 = new ListItem(new Date(System.currentTimeMillis()+1000000),"Museum","Triemli", LineNumber.TRAM_2);
-        listModel.addElement(item1.getJPanel());
-        listModel.addElement(item2.getJPanel());
-        listModel.addElement(item3.getJPanel());
+        listModel.addElement(item1);
+        listModel.addElement(item2);
+        listModel.addElement(item3);
     }
 }

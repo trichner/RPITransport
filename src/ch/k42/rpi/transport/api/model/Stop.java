@@ -1,5 +1,7 @@
 package ch.k42.rpi.transport.api.model;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: thomas
@@ -7,15 +9,20 @@ package ch.k42.rpi.transport.api.model;
  * Time: 11:53 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StopDTO {
-    private StationDTO station;
+public class Stop {
+    private Station station;
     private String name;
     private String category;
     private int number;
     private String operator;
-    private String to;
 
-    public StationDTO getStation() {
+    private String departure;
+
+    public String getDeparture() {
+        return departure;
+    }
+
+    public Station getStation() {
         return station;
     }
 
@@ -35,7 +42,4 @@ public class StopDTO {
         return operator;
     }
 
-    public String getTo() {
-        return to;
-    }
 }

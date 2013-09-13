@@ -1,5 +1,7 @@
 package ch.k42.rpi.transport.api.model;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: thomas
@@ -7,13 +9,13 @@ package ch.k42.rpi.transport.api.model;
  * Time: 11:56 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StationDTO {
+public class Station {
     private String id;
     private String name;
     private String score;
-    private CoordinatesDTO coordinate;
+    private Coordinates coordinate;
 
-    public StationDTO() {
+    public Station() {
     }
 
     public String getId() {
@@ -28,7 +30,7 @@ public class StationDTO {
         return score;
     }
 
-    public CoordinatesDTO getCoordinate() {
+    public Coordinates getCoordinate() {
         return coordinate;
     }
 }

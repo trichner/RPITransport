@@ -1,17 +1,23 @@
 package ch.k42.rpi.transport.api;
 
-import ch.k42.rpi.transport.api.model.StationboardDTO;
+import ch.k42.rpi.transport.api.model.LineNumber;
+import ch.k42.rpi.transport.api.model.Stationboard;
+import ch.k42.rpi.transport.api.model.StationboardEntry;
 import ch.k42.rpi.transport.api.model.Transportations;
 import ch.k42.rpi.transport.gui.Main;
-import com.google.gson.Gson;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import javax.swing.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,22 +28,94 @@ import java.nio.file.Paths;
  */
 public class TimetableUpdater implements Runnable {
 
+    private static final String FORMAT_DATE_ISO="yyyy-MM-dd'T'HH:mm:ssZ";
+    private static final long MAX_OFFSET_MILLIS = 1000*60*99; // 2h
 
-    private static String demo = "{\n \"key1\": \"value1\",\n \"key2\": \"value2\",\n  \"key3\": \"value3\" \n   }";
 
+
+    private static int failCount = 0;
+
+
+    private Main ui;
+    private long offsetInMillis;
+    private int size;
+
+    public TimetableUpdater(Main ui,long offsetInMillis,int size) {
+        this.ui = ui;
+        this.offsetInMillis = offsetInMillis;
+        this.size = size;
+    }
 
     @Override
     public void run() {
-        StationboardDTO stationboard = null;
+        Stationboard stationboard = null;
+        Date now = new Date();
         try {
-            stationboard = RestTOD.getStationboard(RestTOD.STATION_SIHLQUAI_HB, 10, Transportations.TRAMWAY_UNDERGROUND);
-            Main.updateStatus("API OK." + stationboard);
+            stationboard = RestTOD.getStationboard(RestTOD.STATION_SIHLQUAI_HB, size+20, Transportations.TRAMWAY_UNDERGROUND); // add a few more to have at least enough to sort some out
+            ui.updateStatus("API OK.");
+            failCount=0;
+            System.out.println("Updated: " + stationboard); //TODO do stuff with stationboard!
 
-            System.out.println(stationboard); //TODO do stuff with stationboard!
+            List<ListItem> listItems = new ArrayList<ListItem>(40);
+            ListItem item;
+
+            DateFormat isoDate = new SimpleDateFormat(FORMAT_DATE_ISO);
+            for(StationboardEntry e : stationboard){
+
+                try {
+                    if(e==null)             continue;
+                    if(e.getStop()==null)   continue;
+
+                    Date departure = isoDate.parse(e.getStop().getDeparture());
+                    System.out.println("Departure: " + departure);
+                    if(!isInRange(now,departure,MAX_OFFSET_MILLIS)){
+                        continue; // no need to add, to far away
+                    }
+                    if(isInRange(now,departure,offsetInMillis)){
+                        continue; // no need to add, already gone
+                    }
+
+                    String station = e.getStop().getStation().getName();
+                    System.out.println("Station: "+station);
+                    if(station==null)       continue; // error, no need to parse
+
+                    String destination = e.getTo();
+                    if(destination==null){
+                        System.out.println("dest null?");
+                        continue; // error, no need to proceed
+                    }
+                    System.out.println("Destination: " + destination);
+                    LineNumber number = LineNumber.getByNumberAndCategory(Integer.parseInt(e.getNumber()),e.getCategoryCode()); // set cool icon!
+                    System.out.println("adding item");
+                    item = new ListItem(departure,station,destination,number);
+                    listItems.add(item);
+                    if(listItems.size()>=size) break; // our list is big enough
+                } catch (ParseException e1) {
+                    System.err.println("Can't read departure: " + e1.getMessage());
+                } catch (NumberFormatException e1) {
+                    System.err.println("Can't read Line Number '"+e.getNumber()+"': " + e1.getMessage());
+                }
+            }
+
+            Collections.sort(listItems);        // Sort the list
+
+            // update listmodel
+            System.out.println("Refreshing list.");
+            DefaultListModel<ListItem> listModel = ui.getListModel();
+            listModel.removeAllElements();
+            for(int i=0;i<listItems.size();i++){
+                listModel.addElement(listItems.get(i));
+            }
 
         } catch (Exception e) {
-            Main.updateStatus("API fail.");
+            System.err.println("Error updating: " + e.getMessage());
+            failCount++;
+            ui.updateStatus("API fail. (" + (failCount>10000 ? "many times" : failCount) + ")");
         }
+    }
+
+    private boolean isInRange(Date a, Date b, long timeInMillis){
+        return (b.getTime()-a.getTime())<timeInMillis;
     }
 
     public static String demoJson(){
@@ -50,6 +128,5 @@ public class TimetableUpdater implements Runnable {
         }
         return str;
     }
-
 
 }

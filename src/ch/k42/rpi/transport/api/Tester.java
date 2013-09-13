@@ -9,6 +9,6 @@ package ch.k42.rpi.transport.api;
  */
 public class Tester {
     public static void main(String[] args) {
-        new Thread(new TimetableUpdater()).start();
+        //new Thread(new TimetableUpdater()).start();
     }
 }
