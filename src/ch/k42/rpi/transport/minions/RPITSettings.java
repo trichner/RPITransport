@@ -21,7 +21,7 @@ import java.util.List;
 public class RPITSettings {
 
     //==== Constants
-    private static final String settingsfile = "rpitransport.properties";
+    private static final String settingsfile = "rpitransport.config";
 
     private static RPITSettings _instance = new RPITSettings();
 
@@ -118,7 +118,7 @@ public class RPITSettings {
             return getTransportations(); //FIXME potential loop of doom
         }
 
-        return (Transportations[]) list.toArray();
+        return list.toArray(new Transportations[list.size()]);
     }
 
 

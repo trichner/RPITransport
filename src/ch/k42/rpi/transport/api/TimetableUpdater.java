@@ -42,12 +42,14 @@ public class TimetableUpdater implements Runnable {
     private long offsetInMillis;
     private int size;
     private String station;
+    private Transportations[] transportations;
 
     public TimetableUpdater(Main ui,long offsetInMillis,int size) {
         this.ui = ui;
         this.offsetInMillis = offsetInMillis;
         this.size = size;
         station = RPITSettings.getStation();
+        transportations = RPITSettings.getTransportations();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class TimetableUpdater implements Runnable {
         Stationboard stationboard = null;
         Date now = new Date();
         try {
-            stationboard = RestTOD.getStationboardByLocation(station, size + 20); // add a few more to have at least enough to sort some out
+            stationboard = RestTOD.getStationboardByLocation(station, size + 20,transportations); // add a few more to have at least enough to sort some out
             ui.updateStatus("API OK.");
             failCount=0;
             System.out.println("Updated: " + stationboard); //TODO do stuff with stationboard!

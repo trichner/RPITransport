@@ -52,13 +52,18 @@ public class RestTOD {
         return stationboard;
     }
 
-    public static Stationboard getStationboardByLocation(String location,int limit,Transportations type) throws Exception {
-        // Build arguments
-        String[] params = {"limit","station","transportations[]"};
-        String[] args = new String[3];
+    public static Stationboard getStationboardByLocation(String location,int limit,Transportations[] type) throws Exception {
+        // Build arguments FIXME a bit too hardcoded...
+        String[] params = new String[2+type.length];
+        String[] args = new String[2+type.length];
+        params[0]="limit";
+        params[1]="station";
         args[0] = Integer.toString(limit);
         args[1] = location;
-        args[2] = type.getType();
+        for(int i=0;i<type.length;i++){
+            params[2+i]="transportations[]";
+            args[2+i]=type[i].getType();
+        }
 
         // Do request
         String http = httpGET(REST_TRANSPORT_STATIONBOARD_URL, params, args);
