@@ -12,12 +12,14 @@ public class Settings {
     public static final Integer default_nuberOfEntries= 8;
     public static final String default_urlAPI= "http://transport.opendata.ch/v1/stationboard";
     public static final Integer default_updateIntervallInSeconds = 20;
+    public static final String[] defaultTransportations = {"ice_tgv_rj","ec_ic","ir","re_d","ship","s_sn_r","bus","cableway","arz_ext","tramway_underground"};
 
     private String station = default_location;
     private Integer numberOfEntries = default_nuberOfEntries;
     private String urlAPI = default_urlAPI;
     private Integer updateIntervallInSeconds = default_updateIntervallInSeconds;
     private Integer offsetInMinutes = default_offsetInMinutes;
+    private String[] transportations = defaultTransportations;
 
     public String getStation() {
         return station;
@@ -57,5 +59,13 @@ public class Settings {
 
     public void setOffsetInMinutes(Integer offsetInMinutes) {
         this.offsetInMinutes = offsetInMinutes;
+    }
+
+    public String[] getTransportations() {
+        return transportations;
+    }
+
+    public void setTransportations(String[] transportations) {
+        this.transportations = transportations;
     }
 }

@@ -55,7 +55,7 @@ public class TimetableUpdater implements Runnable {
         Stationboard stationboard = null;
         Date now = new Date();
         try {
-            stationboard = RestTOD.getStationboardByLocation(station, size + 20, Transportations.TRAMWAY_UNDERGROUND); // add a few more to have at least enough to sort some out
+            stationboard = RestTOD.getStationboardByLocation(station, size + 20); // add a few more to have at least enough to sort some out
             ui.updateStatus("API OK.");
             failCount=0;
             System.out.println("Updated: " + stationboard); //TODO do stuff with stationboard!
@@ -71,7 +71,7 @@ public class TimetableUpdater implements Runnable {
                     if(e.getStop()==null)   continue;
 
                     Date departure = isoDate.parse(e.getStop().getDeparture());
-                    System.out.println("Departure: " + departure);
+                    //System.out.println("Departure: " + departure);
                     if(!isInRange(now,departure,MAX_OFFSET_MILLIS)){
                         continue; // no need to add, to far away
                     }
@@ -80,17 +80,17 @@ public class TimetableUpdater implements Runnable {
                     }
 
                     String station = e.getStop().getStation().getName();
-                    System.out.println("Station: "+station);
+                    //System.out.println("Station: "+station);
                     if(station==null)       continue; // error, no need to parse
 
                     String destination = e.getTo();
                     if(destination==null){
-                        System.out.println("dest null?");
+                        //System.out.println("dest null?");
                         continue; // error, no need to proceed
                     }
-                    System.out.println("Destination: " + destination);
+                    //System.out.println("Destination: " + destination);
                     LineNumber number = LineNumber.getByNumberAndCategory(Integer.parseInt(e.getNumber()),e.getCategoryCode()); // set cool icon!
-                    System.out.println("adding item");
+                    //System.out.println("adding item");
                     item = new ListItem(departure,station,destination,number);
                     listItems.add(item);
                     if(listItems.size()>=size) break; // our list is big enough

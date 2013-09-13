@@ -1,5 +1,6 @@
 package ch.k42.rpi.transport.minions;
 
+import ch.k42.rpi.transport.api.model.Transportations;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -7,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -99,6 +102,23 @@ public class RPITSettings {
             _instance.settings.setOffsetInMinutes(offset);
         }
         return offset.intValue();
+    }
+
+    public static Transportations[] getTransportations(){
+        String[] transportations = _instance.settings.getTransportations();
+        List<Transportations> list = new LinkedList<Transportations>();
+        for(String s : transportations){
+            Transportations t = Transportations.getByStringOrNull(s);
+            if(t!=null){
+                list.add(t);
+            }
+        }
+        if(list.size()==0){
+            _instance.settings.setTransportations(Settings.defaultTransportations);
+            return getTransportations(); //FIXME potential loop of doom
+        }
+
+        return (Transportations[]) list.toArray();
     }
 
 

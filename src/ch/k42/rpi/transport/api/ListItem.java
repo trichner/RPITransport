@@ -24,6 +24,7 @@ public class ListItem implements Comparable<ListItem> {
     private static final String font = "Arial";
 
     private Date departure;
+    private int departsInMin;
     private String station;
     private String destination;
     private LineNumber number;
@@ -39,9 +40,10 @@ public class ListItem implements Comparable<ListItem> {
         this.station = station;
         this.destination = destination;
         this.number = number;
-
+        this.departsInMin = countdownInMinutes();
         setupPanel();
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -50,6 +52,7 @@ public class ListItem implements Comparable<ListItem> {
 
         ListItem listItem = (ListItem) o;
 
+        if (departsInMin != listItem.departsInMin) return false;
         if (departure != null ? !departure.equals(listItem.departure) : listItem.departure != null) return false;
         if (destination != null ? !destination.equals(listItem.destination) : listItem.destination != null)
             return false;
@@ -57,15 +60,6 @@ public class ListItem implements Comparable<ListItem> {
         if (station != null ? !station.equals(listItem.station) : listItem.station != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = departure != null ? departure.hashCode() : 0;
-        result = 31 * result + (station != null ? station.hashCode() : 0);
-        result = 31 * result + (destination != null ? destination.hashCode() : 0);
-        result = 31 * result + (number != null ? number.hashCode() : 0);
-        return result;
     }
 
     public boolean isOutOfDate(Date now){
@@ -128,24 +122,8 @@ public class ListItem implements Comparable<ListItem> {
         lblDepartsIn.setHorizontalAlignment(JLabel.RIGHT);
         lblDepartsIn.setFont(new Font(font, Font.BOLD, 28));
         lblDepartsIn.setForeground(Color.white);
-        lblDepartsIn.setText(String.format("%2d'",countdownInMinutes()));
+        lblDepartsIn.setText(String.format("%2d'",departsInMin));
         lblDepartsIn.setPreferredSize(new Dimension(WIDTH_DEPARTSIN, HEIGHT));
-    }
-
-    /**
-     *  Updates the countdown and it's label
-     * @param now the current time
-     * @return true if it is still valid (not already departed)
-     */
-    public boolean update(Date now){
-        int countdown = (int) (((double)(departure.getTime()-now.getTime()))/(1000.0*60.0));
-        lblDepartsIn.setText(String.format("%2d'",countdown));
-        if(isOutOfDate(now)){
-            return false;
-        }else {
-            lblDepartsIn.invalidate();
-            return true;
-        }
     }
 
     private int countdownInMinutes(){
