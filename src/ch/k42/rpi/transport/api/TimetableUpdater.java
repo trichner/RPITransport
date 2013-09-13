@@ -5,6 +5,7 @@ import ch.k42.rpi.transport.api.model.Stationboard;
 import ch.k42.rpi.transport.api.model.StationboardEntry;
 import ch.k42.rpi.transport.api.model.Transportations;
 import ch.k42.rpi.transport.gui.Main;
+import ch.k42.rpi.transport.minions.RPITSettings;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -39,11 +40,13 @@ public class TimetableUpdater implements Runnable {
     private Main ui;
     private long offsetInMillis;
     private int size;
+    private String station;
 
     public TimetableUpdater(Main ui,long offsetInMillis,int size) {
         this.ui = ui;
         this.offsetInMillis = offsetInMillis;
         this.size = size;
+        station = RPITSettings.getStation();
     }
 
     @Override
@@ -51,7 +54,7 @@ public class TimetableUpdater implements Runnable {
         Stationboard stationboard = null;
         Date now = new Date();
         try {
-            stationboard = RestTOD.getStationboard(RestTOD.STATION_SIHLQUAI_HB, size+20, Transportations.TRAMWAY_UNDERGROUND); // add a few more to have at least enough to sort some out
+            stationboard = RestTOD.getStationboardByLocation(station, size + 20, Transportations.TRAMWAY_UNDERGROUND); // add a few more to have at least enough to sort some out
             ui.updateStatus("API OK.");
             failCount=0;
             System.out.println("Updated: " + stationboard); //TODO do stuff with stationboard!

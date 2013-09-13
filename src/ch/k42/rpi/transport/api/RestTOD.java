@@ -2,6 +2,7 @@ package ch.k42.rpi.transport.api;
 
 import ch.k42.rpi.transport.api.model.Stationboard;
 import ch.k42.rpi.transport.api.model.Transportations;
+import ch.k42.rpi.transport.minions.RPITSettings;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -18,19 +19,40 @@ import java.net.URL;
  */
 public class RestTOD {
 
-    private static final String REST_TRANSPORT_STATIONBOARD_URL = "http://transport.opendata.ch/v1/stationboard";
+    private static String REST_TRANSPORT_STATIONBOARD_URL = RPITSettings.getAPIUrl();//"http://transport.opendata.ch/v1/stationboard";
 
 
     public static final String STATION_SIHLQUAI_HB = "008591368";
     public static final String STATION_MUSEUM_GESTALTUNG = "008591282";
     public static final int CATEGORY_CODE_TRAM = 9;
 
-    public static Stationboard getStationboard(String id,int limit,Transportations type) throws Exception {
+    public static Stationboard getStationboardById(String id,int limit,Transportations type) throws Exception {
         // Build arguments
         String[] params = {"limit","id","transportations[]"};
         String[] args = new String[3];
         args[0] = Integer.toString(limit);
         args[1] = id;
+        args[2] = type.getType();
+
+        // Do request
+        String http = httpGET(REST_TRANSPORT_STATIONBOARD_URL, params, args);
+
+        // Debug
+        System.out.println(http);
+
+        // parse JSON
+        Gson gson = new Gson();
+        Stationboard stationboard = gson.fromJson(http,Stationboard.class);
+
+        return stationboard;
+    }
+
+    public static Stationboard getStationboardByLocation(String location,int limit,Transportations type) throws Exception {
+        // Build arguments
+        String[] params = {"limit","station","transportations[]"};
+        String[] args = new String[3];
+        args[0] = Integer.toString(limit);
+        args[1] = location;
         args[2] = type.getType();
 
         // Do request

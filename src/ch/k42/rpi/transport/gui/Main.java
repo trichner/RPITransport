@@ -3,6 +3,7 @@ package ch.k42.rpi.transport.gui;
 import ch.k42.rpi.transport.api.model.LineNumber;
 import ch.k42.rpi.transport.api.ListItem;
 import ch.k42.rpi.transport.api.TimetableUpdater;
+import ch.k42.rpi.transport.minions.RPITSettings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +19,6 @@ import java.util.concurrent.TimeUnit;
  * To change this template use File | Settings | File Templates.
  */
 public class Main {
-
-    private static final int MAX_LIST_SIZE=8;
 
     private JPanel mainPanel;
     private JList listPanels;
@@ -93,12 +92,16 @@ public class Main {
 
         // fire up everything
         executor = new ScheduledThreadPoolExecutor(1);
-        executor.scheduleAtFixedRate(new TimetableUpdater(this,3*1000*60,MAX_LIST_SIZE),2,20, TimeUnit.SECONDS); // 3min offset
+        long offset = RPITSettings.getOffsetInMinutes()*60*1000;
+        long updateInterval = RPITSettings.getUpdateIntervallInSeconds();
+        int maxListSize = RPITSettings.getNumberOfEntries();
+        executor.scheduleAtFixedRate(new TimetableUpdater(this, offset,maxListSize),1,updateInterval, TimeUnit.SECONDS);
     }
 
     private void shutdownAPI() {
         System.out.println("Shutting down safely.");
         executor.shutdownNow();
+        RPITSettings.store();
     }
 
 

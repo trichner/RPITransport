@@ -57,6 +57,7 @@ public class ListItem implements Comparable<ListItem> {
         panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.LEADING));
         panel.setAlignmentY(JPanel.LEFT_ALIGNMENT);
+        panel.setBackground(new Color(0,0x33,0x99,255)); // should be full alpha
         setupLblLineNo();
         panel.add(lblLineNo);
         setupLblStation();
@@ -72,6 +73,7 @@ public class ListItem implements Comparable<ListItem> {
         lblLineNo.setHorizontalAlignment(JLabel.LEFT);
         lblLineNo.setFont(new Font("Andale Mono", Font.BOLD, 28));
         lblLineNo.setText(number.name());
+        lblLineNo.setForeground(Color.white);
         lblLineNo.setPreferredSize(new Dimension(WIDTH_LINENO, HEIGHT));
     }
 
@@ -79,6 +81,7 @@ public class ListItem implements Comparable<ListItem> {
         lblStation = new JLabel();
         lblStation.setHorizontalAlignment(JLabel.LEFT);
         lblStation.setFont(new Font("Verdana", Font.BOLD, 28));
+        lblStation.setForeground(Color.white);
         lblStation.setText(station);
         lblStation.setPreferredSize(new Dimension(WIDTH_STATION, HEIGHT));
     }
@@ -87,6 +90,7 @@ public class ListItem implements Comparable<ListItem> {
         lblDestination = new JLabel();
         lblDestination.setHorizontalAlignment(JLabel.LEFT);
         lblDestination.setFont(new Font("Verdana", Font.BOLD, 28));
+        lblDestination.setForeground(Color.white);
         lblDestination.setText(destination);
         lblDestination.setPreferredSize(new Dimension(WIDTH_DESTINATION,HEIGHT));
     }
@@ -96,6 +100,7 @@ public class ListItem implements Comparable<ListItem> {
         lblDepartsIn.setHorizontalTextPosition(JLabel.RIGHT);
         lblDepartsIn.setHorizontalAlignment(JLabel.RIGHT);
         lblDepartsIn.setFont(new Font("Verdana", Font.BOLD, 28));
+        lblDepartsIn.setForeground(Color.white);
         lblDepartsIn.setText(String.format("%2d'",countdownInMinutes()));
         lblDepartsIn.setPreferredSize(new Dimension(WIDTH_DEPARTSIN, HEIGHT));
     }
