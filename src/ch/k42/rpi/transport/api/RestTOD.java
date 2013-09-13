@@ -43,7 +43,7 @@ public class RestTOD {
         String http = httpGET(REST_TRANSPORT_STATIONBOARD_URL, params, args);
 
         // Debug
-        System.out.println(http);
+        //System.out.println(http);
 
         // parse JSON
         Gson gson = new Gson();
@@ -69,7 +69,7 @@ public class RestTOD {
         String http = httpGET(REST_TRANSPORT_STATIONBOARD_URL, params, args);
 
         // Debug
-        System.out.println(http);
+        //System.out.println(http);
 
         // parse JSON
         Gson gson = new Gson();
@@ -89,7 +89,7 @@ public class RestTOD {
         String http = httpGET(REST_TRANSPORT_STATIONBOARD_URL, params, args);
 
         // Debug
-        System.out.println(http);
+        //System.out.println(http);
 
         // parse JSON
         Gson gson = new Gson();

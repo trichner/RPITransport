@@ -31,7 +31,7 @@ import java.util.List;
 public class TimetableUpdater implements Runnable {
 
     private static final String FORMAT_DATE_ISO="yyyy-MM-dd'T'HH:mm:ssZ";
-    private static final long MAX_OFFSET_MILLIS = 1000*60*99; // 2h
+    private static final long MAX_OFFSET_MILLIS = 1000*60*999; // 999min
 
 
 
@@ -54,57 +54,9 @@ public class TimetableUpdater implements Runnable {
 
     @Override
     public void run() {
-        Stationboard stationboard = null;
-        Date now = new Date();
         try {
-            stationboard = RestTOD.getStationboardByLocation(station, size + 20,transportations); // add a few more to have at least enough to sort some out
-            ui.updateStatus("API OK.");
-            failCount=0;
-            System.out.println("Updated: " + stationboard); //TODO do stuff with stationboard!
 
-            List<ListItem> listItems = new ArrayList<ListItem>(40);
-            ListItem item;
-
-            DateFormat isoDate = new SimpleDateFormat(FORMAT_DATE_ISO);
-            for(StationboardEntry e : stationboard){
-
-                try {
-                    if(e==null)             continue;
-                    if(e.getStop()==null)   continue;
-
-                    Date departure = isoDate.parse(e.getStop().getDeparture());
-                    //System.out.println("Departure: " + departure);
-                    if(!isInRange(now,departure,MAX_OFFSET_MILLIS)){
-                        continue; // no need to add, to far away
-                    }
-                    if(isInRange(now,departure,offsetInMillis)){
-                        continue; // no need to add, already gone
-                    }
-
-                    String station = e.getStop().getStation().getName();
-                    //System.out.println("Station: "+station);
-                    if(station==null)       continue; // error, no need to parse
-
-                    String destination = e.getTo();
-                    if(destination==null){
-                        //System.out.println("dest null?");
-                        continue; // error, no need to proceed
-                    }
-                    //System.out.println("Destination: " + destination);
-                    LineNumber number = LineNumber.getByNumberAndCategory(Integer.parseInt(e.getNumber()),e.getCategoryCode()); // set cool icon!
-                    //System.out.println("adding item");
-                    item = new ListItem(departure,station,destination,number);
-                    listItems.add(item);
-                    if(listItems.size()>=size) break; // our list is big enough
-                } catch (ParseException e1) {
-                    System.err.println("Can't read departure: " + e1.getMessage());
-                } catch (NumberFormatException e1) {
-                    System.err.println("Can't read Line Number '"+e.getNumber()+"': " + e1.getMessage());
-                }
-            }
-
-            Collections.sort(listItems);        // Sort the list
-
+            List<ListItem> listItems = fetchList(size+5); //give some margin to the size, we can cut off later
             // update listmodel
             System.out.println("Refreshing list.");
             ui.getListModel().setList(listItems);
@@ -112,8 +64,59 @@ public class TimetableUpdater implements Runnable {
         } catch (Exception e) {
             System.err.println("Error updating: " + e.getMessage());
             failCount++;
-            ui.updateStatus("API fail. (" + (failCount>10000 ? "many times" : failCount) + ")");
+            ui.updateStatus("API fail. (" + (failCount>42 ? "many times" : failCount) + ")");
         }
+    }
+
+    private List<ListItem> fetchList(int fsize) throws Exception{
+        Date now = new Date();
+        Stationboard stationboard = RestTOD.getStationboardByLocation(station, fsize,transportations); // add a few more to have at least enough to sort some out
+        ui.updateStatus("API OK.");
+        List<ListItem> listItems = new ArrayList<ListItem>(40);
+        ListItem item;
+
+        DateFormat isoDate = new SimpleDateFormat(FORMAT_DATE_ISO);
+        for(StationboardEntry e : stationboard){
+
+            try {
+                if(e==null)             continue;
+                if(e.getStop()==null)   continue;
+
+                Date departure = isoDate.parse(e.getStop().getDeparture());
+                //System.out.println("Departure: " + departure);
+                if(!isInRange(now,departure,MAX_OFFSET_MILLIS)){
+                    continue; // no need to add, to far away
+                }
+                if(isInRange(now,departure,offsetInMillis)){
+                    continue; // no need to add, already gone
+                }
+
+                String station = e.getStop().getStation().getName();
+                //System.out.println("Station: "+station);
+                if(station==null)       continue; // error, no need to parse
+
+                String destination = e.getTo();
+                if(destination==null){
+                    //System.out.println("dest null?");
+                    continue; // error, no need to proceed
+                }
+                //System.out.println("Destination: " + destination);
+                LineNumber number = LineNumber.getByNumberAndCategory(Integer.parseInt(e.getNumber()),e.getCategoryCode()); // set cool icon!
+                //System.out.println("adding item");
+                item = new ListItem(departure,station,destination,number);
+                listItems.add(item);
+                if(listItems.size()>=size) break; // our list is big enough
+            } catch (ParseException e1) {
+                System.err.println("Can't read departure: " + e1.getMessage());
+            } catch (NumberFormatException e1) {
+                System.err.println("Can't read Line Number '"+e.getNumber()+"': " + e1.getMessage());
+            }
+        }
+        if(listItems.size()<size&&fsize<100) return fetchList(fsize*2); // haven't found enough items? and prevent endless loop
+
+        Collections.sort(listItems);        // Sort the list
+        failCount=0;
+        return listItems;
     }
 
     private boolean isInRange(Date a, Date b, long timeInMillis){

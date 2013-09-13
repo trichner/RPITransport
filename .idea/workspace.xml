@@ -7,7 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29006142-d840-4e54-8bfb-8b3d1e32160c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rpitransport.config" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" afterPath="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -20,7 +20,7 @@
     <file path="/LineNumber.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379034788270" ignored="false" />
     <file path="/ListItem.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379103020154" ignored="false" />
     <file path="/JPanelRenderer.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379030058639" ignored="false" />
-    <file path="/TimetableUpdater.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379105727438" ignored="false" />
+    <file path="/TimetableUpdater.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379108131465" ignored="false" />
     <file path="/Tester.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379021177496" ignored="false" />
     <file path="/jsonDemo.txt" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379022172208" ignored="false" />
     <file path="/StationBoard.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379023485446" ignored="false" />
@@ -31,7 +31,7 @@
     <file path="/StationboardDTO.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379024894843" ignored="false" />
     <file path="/RestTOD.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379105785448" ignored="false" />
     <file path="/Transportations.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379034937038" ignored="false" />
-    <file path="/Dummy.txt" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379106848246" ignored="false" />
+    <file path="/Dummy.txt" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379106869893" ignored="false" />
     <file path="/Stop.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379031178144" ignored="false" />
     <file path="/StationboardEntry.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379031634202" ignored="false" />
     <file path="/Station.java" changelist="29006142-d840-4e54-8bfb-8b3d1e32160c" time="1379031571778" ignored="false" />
@@ -105,7 +105,7 @@
       <file leaf-file-name="TimetableUpdater.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="95" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0">
+            <state line="66" column="29" selection-start="2003" selection-end="2003" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -154,19 +154,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestTOD.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RestTOD.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="39" selection-start="2149" selection-end="2149" vertical-scroll-proportion="0.0">
+            <state line="45" column="10" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.7816901">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RPITSettings.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RPITSettings.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="67" selection-start="609" selection-end="609" vertical-scroll-proportion="0.021067416">
+            <state line="42" column="5" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#3390#3407#0" expanded="true" />
               </folding>
@@ -213,10 +213,10 @@
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/CommentFilter.java" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/Settings.java" />
-        <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" />
-        <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" />
         <option value="$PROJECT_DIR$/rpitransport.properties" />
         <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java" />
+        <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java" />
+        <option value="$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java" />
       </list>
     </option>
   </component>
@@ -660,7 +660,11 @@
       <created>1379105688739</created>
       <updated>1379105688740</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="minor changes to hardcoded stuff">
+      <created>1379106878872</created>
+      <updated>1379106878872</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -676,17 +680,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5003358" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.672391" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.672391" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760897" sideWeight="0.49966422" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975152" sideWeight="0.672391" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -733,7 +737,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Transportations setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor changes to hardcoded stuff" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -754,6 +758,7 @@
     <MESSAGE value="changed hardcoded default settings" />
     <MESSAGE value="changed listmodel, should be smoother now... (should)" />
     <MESSAGE value="added Transportations setting" />
+    <MESSAGE value="minor changes to hardcoded stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -822,30 +827,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="49" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/model/Transportations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="9" selection-start="738" selection-end="738" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="95" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="39" selection-start="2149" selection-end="2149" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -864,10 +848,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/minions/RPITSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="67" selection-start="609" selection-end="609" vertical-scroll-proportion="0.021067416">
+        <state line="42" column="5" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#3390#3407#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/ListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="49" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/TimetableUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="29" selection-start="2003" selection-end="2003" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/k42/rpi/transport/api/RestTOD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="10" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.7816901">
+          <folding />
         </state>
       </provider>
     </entry>
