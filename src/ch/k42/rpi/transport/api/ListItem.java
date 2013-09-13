@@ -17,7 +17,7 @@ public class ListItem implements Comparable<ListItem> {
 
     private static final int WIDTH_STATION = 600;
     private static final int WIDTH_DESTINATION = 600;
-    private static final int WIDTH_DEPARTSIN = 60;
+    private static final int WIDTH_DEPARTSIN = 80;
     private static final int WIDTH_LINENO = 150;
     private static final int HEIGHT = 100;
 
