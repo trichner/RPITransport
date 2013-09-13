@@ -24,7 +24,7 @@ public class Main {
     private JList listPanels;
     private JLabel lblStatus;
     private JFrame mainFrame;
-    private DefaultListModel<ListItem> listModel;
+    private ListItemListModel listModel;
     private ScheduledThreadPoolExecutor executor;
 
 
@@ -106,14 +106,14 @@ public class Main {
 
 
     private void createUIComponents() {
-        listModel = new DefaultListModel<ListItem>();
+        listModel = new ListItemListModel();
         addDummyItems();
         listPanels = new JList(listModel);
         listPanels.setAlignmentY(JList.CENTER_ALIGNMENT);
         listPanels.setCellRenderer(new JPanelRenderer());
     }
 
-    public DefaultListModel<ListItem> getListModel() {
+    public ListItemListModel getListModel() {
         return listModel;
     }
 
@@ -121,8 +121,8 @@ public class Main {
         ListItem item1 = new ListItem(new Date(System.currentTimeMillis()+100000),"Sihlquai","Altstetten", LineNumber.TRAM_1);
         ListItem item2 = new ListItem(new Date(System.currentTimeMillis()+200000),"Sihlquai","Triemli", LineNumber.TRAM_2);
         ListItem item3 = new ListItem(new Date(System.currentTimeMillis()+1000000),"Museum","Triemli", LineNumber.TRAM_2);
-        listModel.addElement(item1);
-        listModel.addElement(item2);
-        listModel.addElement(item3);
+        listModel.add(item1);
+        listModel.add(item2);
+        listModel.add(item3);
     }
 }

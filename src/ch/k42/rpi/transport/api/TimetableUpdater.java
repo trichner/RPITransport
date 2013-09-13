@@ -4,6 +4,7 @@ import ch.k42.rpi.transport.api.model.LineNumber;
 import ch.k42.rpi.transport.api.model.Stationboard;
 import ch.k42.rpi.transport.api.model.StationboardEntry;
 import ch.k42.rpi.transport.api.model.Transportations;
+import ch.k42.rpi.transport.gui.ListItemListModel;
 import ch.k42.rpi.transport.gui.Main;
 import ch.k42.rpi.transport.minions.RPITSettings;
 
@@ -104,11 +105,7 @@ public class TimetableUpdater implements Runnable {
 
             // update listmodel
             System.out.println("Refreshing list.");
-            DefaultListModel<ListItem> listModel = ui.getListModel();
-            listModel.removeAllElements();
-            for(int i=0;i<listItems.size();i++){
-                listModel.addElement(listItems.get(i));
-            }
+            ui.getListModel().setList(listItems);
 
         } catch (Exception e) {
             System.err.println("Error updating: " + e.getMessage());

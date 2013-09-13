@@ -21,6 +21,8 @@ public class ListItem implements Comparable<ListItem> {
     private static final int WIDTH_LINENO = 150;
     private static final int HEIGHT = 100;
 
+    private static final String font = "Arial";
+
     private Date departure;
     private String station;
     private String destination;
@@ -39,6 +41,31 @@ public class ListItem implements Comparable<ListItem> {
         this.number = number;
 
         setupPanel();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ListItem listItem = (ListItem) o;
+
+        if (departure != null ? !departure.equals(listItem.departure) : listItem.departure != null) return false;
+        if (destination != null ? !destination.equals(listItem.destination) : listItem.destination != null)
+            return false;
+        if (number != listItem.number) return false;
+        if (station != null ? !station.equals(listItem.station) : listItem.station != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = departure != null ? departure.hashCode() : 0;
+        result = 31 * result + (station != null ? station.hashCode() : 0);
+        result = 31 * result + (destination != null ? destination.hashCode() : 0);
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        return result;
     }
 
     public boolean isOutOfDate(Date now){
@@ -71,7 +98,7 @@ public class ListItem implements Comparable<ListItem> {
     private void setupLblLineNo(){
         lblLineNo = new JLabel();
         lblLineNo.setHorizontalAlignment(JLabel.LEFT);
-        lblLineNo.setFont(new Font("Andale Mono", Font.BOLD, 28));
+        lblLineNo.setFont(new Font(font, Font.BOLD, 28));
         lblLineNo.setText(number.name());
         lblLineNo.setForeground(Color.white);
         lblLineNo.setPreferredSize(new Dimension(WIDTH_LINENO, HEIGHT));
@@ -80,7 +107,7 @@ public class ListItem implements Comparable<ListItem> {
     private void setupLblStation(){
         lblStation = new JLabel();
         lblStation.setHorizontalAlignment(JLabel.LEFT);
-        lblStation.setFont(new Font("Verdana", Font.BOLD, 28));
+        lblStation.setFont(new Font(font, Font.BOLD, 28));
         lblStation.setForeground(Color.white);
         lblStation.setText(station);
         lblStation.setPreferredSize(new Dimension(WIDTH_STATION, HEIGHT));
@@ -89,7 +116,7 @@ public class ListItem implements Comparable<ListItem> {
     private void setupLblDestination(){
         lblDestination = new JLabel();
         lblDestination.setHorizontalAlignment(JLabel.LEFT);
-        lblDestination.setFont(new Font("Verdana", Font.BOLD, 28));
+        lblDestination.setFont(new Font(font, Font.BOLD, 28));
         lblDestination.setForeground(Color.white);
         lblDestination.setText(destination);
         lblDestination.setPreferredSize(new Dimension(WIDTH_DESTINATION,HEIGHT));
@@ -99,7 +126,7 @@ public class ListItem implements Comparable<ListItem> {
         lblDepartsIn = new JLabel();
         lblDepartsIn.setHorizontalTextPosition(JLabel.RIGHT);
         lblDepartsIn.setHorizontalAlignment(JLabel.RIGHT);
-        lblDepartsIn.setFont(new Font("Verdana", Font.BOLD, 28));
+        lblDepartsIn.setFont(new Font(font, Font.BOLD, 28));
         lblDepartsIn.setForeground(Color.white);
         lblDepartsIn.setText(String.format("%2d'",countdownInMinutes()));
         lblDepartsIn.setPreferredSize(new Dimension(WIDTH_DEPARTSIN, HEIGHT));
